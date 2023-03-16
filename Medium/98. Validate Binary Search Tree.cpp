@@ -1,0 +1,89 @@
+/*
+98. Validate Binary Search Tree
+Medium
+14.1K
+1.2K
+company
+Bloomberg
+company
+Amazon
+company
+Zillow
+
+Given the root of a binary tree, determine if it is a valid binary search tree (BST).
+
+A valid BST is defined as follows:
+
+    The left
+    subtree
+    of a node contains only nodes with keys less than the node's key.
+    The right subtree of a node contains only nodes with keys greater than the node's key.
+    Both the left and right subtrees must also be binary search trees.
+
+ 
+
+Example 1:
+
+Input: root = [2,1,3]
+Output: true
+
+Example 2:
+
+Input: root = [5,1,4,null,null,3,6]
+Output: false
+Explanation: The root node's value is 5 but its right child's value is 4.
+
+ 
+
+Constraints:
+
+    The number of nodes in the tree is in the range [1, 104].
+    -231 <= Node.val <= 231 - 1
+
+Accepted
+1.9M
+Submissions
+5.8M
+Acceptance Rate
+32.0%
+Seen this question in a real interview before?
+1/4
+Yes
+No
+Discussion (58)
+Similar Questions
+Binary Tree Inorder Traversal
+Easy
+Find Mode in Binary Search Tree
+Easy
+Related Topics
+Tree
+Depth-First Search
+Binary Search Tree
+Binary Tree
+*/
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isValid(TreeNode* root, TreeNode* left, TreeNode* right)
+    {
+        if(!root)   return true;
+        if((left && root->val <= left->val) || (right && root->val >= right->val))   return  false;
+
+        return isValid(root->left, left, root) && isValid(root->right, root, right);
+    }
+
+    bool isValidBST(TreeNode* root) {
+        return isValid(root, NULL, NULL);
+    }
+};
